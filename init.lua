@@ -521,6 +521,12 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+          -- Paul HACK/WORKAROUND: 3.9 doesn't seem to have protocol.Methods,
+          -- which causes some errors on load. A workaround is to create a dummy
+          -- table if it is Nil
+          vim.lsp.protocol.Methods = vim.lsp.protocol.Methods or {}
+
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
