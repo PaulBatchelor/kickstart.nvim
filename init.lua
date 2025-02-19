@@ -560,6 +560,12 @@ require('lazy').setup({
             end, '[T]oggle Inlay [H]ints')
           end
         end,
+
+        vim.lsp.buf.format {
+          filter = function(client)
+            return client.name ~= 'tsserver'
+          end,
+        },
       })
 
       -- LSP servers and clients are able to communicate to each other what features they support.
