@@ -6,6 +6,18 @@ return {
     {
       "pmizio/typescript-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-      opts = {},
-    }
+      opts = {
+          settings = {
+              -- Disable formatting
+              formatting = {
+                  enable = false
+              },
+              -- Disable auto import organization
+              tsserver = {
+                  formatOnType = false,
+                  organizeImportsOnSave = false
+              }
+          }
+      },
+    },
 }
