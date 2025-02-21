@@ -18,10 +18,18 @@ return {
                   organizeImportsOnSave = false
               }
           },
-          on_attach = function(client)
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
-          end
+          -- turns off auto-format on save
+          -- on_attach = function(client)
+          --     client.server_capabilities.documentFormattingProvider = false
+          --     client.server_capabilities.documentRangeFormattingProvider = false
+          -- end
       },
     },
+    {
+        'junegunn/fzf',
+        build = './install --all',
+        dependencies = {
+            'junegunn/fzf.vim'
+        },
+    }
 }
